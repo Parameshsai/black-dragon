@@ -44,7 +44,14 @@ pipeline
 					}
 					stage('Integration test')
 					{
-						
+						agent any
+						{
+							docker
+							{
+								reuseNode false
+								image 'ubuntu'
+							}
+						}
 						steps
 						{
 							echo "In Integration test 4th block"
