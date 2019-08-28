@@ -1,0 +1,56 @@
+pipeline
+{
+	agent any
+		stages
+		{
+			stage('One')
+			{
+				steps
+				{
+					echo 'In 1st stageeeeeee'
+				}
+			}
+			stage('Two')
+			{
+				steps
+				{
+					input('do u want to continue from 2nd stageeeeeeeeeee?')
+				}
+			}
+			stage('Three')
+			{
+				when
+				{
+					not
+					{
+						branch "master"
+					}
+				}
+				steps
+				{
+					echo 'In 3rd stageeeeeeeeeee'
+				}
+			}
+			stage('Four')
+			{
+				parallel
+				{
+					stage('Unit Test')
+					{
+						steps
+						{
+							echo "In Unit test 4th blockkkkkkkkkk"
+						}
+					}
+					stage('Integration test')
+					{
+						
+						steps
+						{
+							echo "In Integration test 4th blockkkkkkkkkkkkk"
+						}
+					}
+				}	
+			}		
+		}
+}
