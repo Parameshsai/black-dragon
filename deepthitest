@@ -39,7 +39,7 @@ pipeline
 					{
 						steps
 						{
-							echo "In Unit test 4th blockkkkkkkkkk"
+							echo "In Unit test 4th blockkkkkkkkkkk"
 						}
 					}
 					stage('Integration test')
