@@ -2,12 +2,13 @@ pipeline {
     agent any
 
     stages {
+	def varmaven1 = tool name: 'maven', type: 'maven'
         stage ('Compile Stage') {
 		tool name: 'maven', type: 'maven'
 
             steps {
-					def varmaven1 = tool name: 'maven', type: 'maven'
-                    sh "${varmaven1}/bin/mvn clean compile"
+					
+                    sh "${varmaven1}/bin/mvn package"
                 
             }
         }
@@ -15,15 +16,15 @@ pipeline {
         stage ('Testing Stage') {
 
             steps {
-                def varmaven2 = tool name: 'maven', type: 'maven'
-                    sh "${varmaven2}/bin/mvn test"
+               
+                    sh "${varmaven1}/bin/mvn test"
                 }
             }
         
         stage ('Deployment Stage') {
             steps {
-                def varmaven3 = tool name: 'maven', type: 'maven'
-                    sh "${varmaven3}/bin/mvn deploy"
+                
+                    sh "${varmaven1}/bin/mvn deploy"
             }
         }
     }
