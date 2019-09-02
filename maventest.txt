@@ -3,29 +3,27 @@ pipeline {
 
     stages {
         stage ('Compile Stage') {
+		tool name: 'maven', type: 'maven'
 
             steps {
-                withMaven(maven : 'maven') {
-                    sh 'mvn clean compile'
-                }
+					def varmaven1 = tool name: 'maven', type: 'maven'
+                    sh "${varmaven1}/bin/mvn clean compile"
+                
             }
         }
 
         stage ('Testing Stage') {
 
             steps {
-                withMaven(maven : 'maven') {
-                    sh 'mvn test'
+                def varmaven2 = tool name: 'maven', type: 'maven'
+                    sh "${varmaven2}/bin/mvn test"
                 }
             }
-        }
-
-
+        
         stage ('Deployment Stage') {
             steps {
-                withMaven(maven : 'maven') {
-                    sh 'mvn deploy'
-                }
+                def varmaven3 = tool name: 'maven', type: 'maven'
+                    sh "${varmaven3}/bin/mvn deploy"
             }
         }
     }
