@@ -4,8 +4,6 @@ pipeline {
     stages {
 	def varmaven1 = tool name: 'maven', type: 'maven'
         stage ('Compile Stage') {
-		tool name: 'maven', type: 'maven'
-
             steps {
 					
                     sh "${varmaven1}/bin/mvn package"
